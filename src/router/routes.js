@@ -5,50 +5,41 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
       {
-        path: 'events',
-        component: () => import('layouts/EventsLayout.vue'),
+        path: 'points',
+        component: () => import('src/layouts/MapLayout.vue'),
         children: [
           {
             path: '',
-            component: () => import('pages/EventsPage.vue'),
-            meta: { title: 'Events' },
+            component: () => import('pages/PointsPage.vue'),
+            meta: { title: 'Puntos de interés' },
           },
           {
             path: ':id',
-            component: () => import('pages/EventDetailsPage.vue'),
-            meta: { title: 'Event Details' },
+            component: () => import('pages/PointsDetailsPage.vue'),
+            meta: { title: 'Detalles del punto de interés' },
           },
         ],
       },
       {
-        path: 'notifications',
+        path: 'routes',
+        component: () => import('src/layouts/MapLayout.vue'),
         children: [
           {
             path: '',
-            component: () => import('pages/NotificationsPage.vue'),
-            meta: { title: 'Notifications' },
+            component: () => import('pages/RoutesPage.vue'),
+            meta: { title: 'Rutas representativas' },
+          },
+          {
+            path: ':id',
+            component: () => import('pages/RouteDetailsPage.vue'),
+            meta: { title: 'Detalles de la ruta' },
           },
         ],
       },
       {
-        path: 'profile',
-        children: [
-          {
-            path: '',
-            component: () => import('pages/ProfilePage.vue'),
-            meta: { title: 'Profile' },
-          },
-          {
-            path: 'about',
-            component: () => import('pages/AboutPage.vue'),
-            meta: { title: 'About' },
-          },
-          {
-            path: 'disclaimer',
-            component: () => import('pages/DisclaimerPage.vue'),
-            meta: { title: 'Disclaimer' },
-          },
-        ],
+        path: 'about',
+        meta: { title: 'Sobre nosotros' },
+        component: () => import('pages/AboutUsPage.vue'),
       },
     ],
   },
