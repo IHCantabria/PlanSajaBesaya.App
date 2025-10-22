@@ -2,30 +2,79 @@
 
 // Declare font
 @font-face {
-  font-family: customfont;
-  src: url(./fonts/Manrope-VariableFont_wght.ttf);
-}
-
-// declare a class which applies it
-.my-font {
   font-family: 'customfont';
+  src: url('./fonts/Poppins-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
 }
 
-// apply it to the entire app
+@font-face {
+  font-family: 'customfont';
+  src: url('./fonts/Poppins-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'customfont';
+  src: url('./fonts/Poppins-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'customfont';
+  src: url('./fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'customfont';
+  src: url('./fonts/Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'customfont';
+  src: url('./fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'customfont';
+  src: url('./fonts/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'customfont';
+  src: url('./fonts/Poppins-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'customfont';
+  src: url('./fonts/Poppins-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+// Apply font globally
 html,
 body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'customfont', sans-serif;
   font-size: 14px;
   font-weight: 400;
 }
 
-p {
-  margin: 0;
-  padding: 0;
-}
-
-ol {
-  li {
-    margin-bottom: 0.5rem;
-  }
+.my-font {
+  font-family: 'customfont', sans-serif;
 }
