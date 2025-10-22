@@ -13,7 +13,7 @@ const goToHome = () => {
 }
 
 const onEventClick = (eventId) => {
-  router.push(`/events/${eventId}`)
+  router.push(`/points/${eventId}`)
 }
 const notifications = ref([
   {
@@ -103,17 +103,28 @@ const openFilters = () => {
 <template>
   <q-layout view="hHr LpR fFr">
     <!-- HEADER -->
-    <q-header reveal bordered class="bg-white text-dark" height-hint="56">
+    <q-header v-if="route?.path !== '/'" reveal bordered class="bg-white text-dark" height-hint="56">
 
       <!-- MOBILE ONLY -->
       <q-toolbar class="mobile-only navbar">
-        <!-- Back button: show only if not on home page -->
-        <q-btn v-if="route?.path !== '/'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
+        <!-- Logo: visible only on home page -->
+        <template v-if="route?.path === '/points'">
+          <img src="~assets/SABE_logo_cuadrado.png" alt="Logo" class="logo--mobile navbar-icon cursor-pointer"
+            aria-label="Home" @click="goToHome" />
+        </template>
+
+        <!-- GoBack button: visible only if not on home page -->
+        <template v-else>
+          <q-btn flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
+        </template>
         <!-- Current page title -->
         <q-toolbar-title class="app-title">{{ route.meta.title ?? "" }}</q-toolbar-title>
         <!-- Filters button -->
+        <!-- Show only on points and routes pages -->
         <q-btn flat dense round icon="filter_list" aria-label="Filters" @click="openFilters"
-          class="q-mr-sm filters-icon visible" :class="{ hidden: route?.path !== '/events' }" />
+          class="q-mr-sm filters-icon visible"
+          :class="{ hidden: route?.path !== '/points' && route?.path !== '/routes' }">
+        </q-btn>
       </q-toolbar>
 
       <!-- Filters drawer -->
@@ -161,15 +172,15 @@ const openFilters = () => {
         <!-- Brand -->
         <div class="navbar navbar__start">
           <!-- Logo: redirect to home page -->
-          <q-avatar>
-            <img src="~assets/quasar-logo-vertical.svg" alt="Logo" height="60" class="navbar-icon cursor-pointer"
-              aria-label="Home" @click="goToHome" />
-          </q-avatar>
+          <div>
+            <img src="~assets/SABE_logo.png" alt="Logo" class="logo navbar-icon cursor-pointer" aria-label="Home"
+              @click="goToHome" />
+          </div>
           <q-separator vertical spaced />
 
           <!-- App name -->
           <div class="navbar navbar__start title-container q-px-sm">
-            <q-toolbar-title class="app-title q-pr-xs">App-Name</q-toolbar-title>
+            <q-toolbar-title class="app-title q-pr-xs">Plan Saja-Besaya</q-toolbar-title>
             <p class="app-version">v{{ $q.version }}</p>
           </div>
         </div>
@@ -228,21 +239,25 @@ const openFilters = () => {
     </q-page-container>
 
     <!-- FOOTER -->
-    <q-footer reveal class="mobile-only bg-dark glossy text-white">
-      <q-btn-group class="full-width q-pa-xs flex justify-around">
-        <q-btn to="/events" stack class="button">
-          <q-icon name="sym_r_home" class="button__icon" />
-          <span class="button__text">Home</span>
-        </q-btn>
-        <q-btn to="/notifications" stack class="button">
-          <q-icon name="sym_r_notifications" class="button__icon" />
-          <span class="button__text">Notifications</span>
-        </q-btn>
-        <q-btn to="/profile" stack class="button">
-          <q-icon name="sym_r_person" class="button__icon" />
-          <span class="button__text">Profile</span>
-        </q-btn>
-      </q-btn-group>
+    <q-footer v-if="route?.path !== '/'" reveal class="mobile-only text-white footer">
+      <div class="full-width q-pa-xs flex justify-center items-center q-gutter-md">
+        <!-- add active class to the current route -->
+        <div class="button__icon" :class="{ 'button__icon--active': route.path === '/points' }"
+          @click="router.push('/points')">
+          <img src="~assets/icons/map.svg" viewBox="0 0 24 24" class="icon" />
+          <!-- <span class="text">Puntos</span> -->
+        </div>
+        <div class="button__icon" :class="{ 'button__icon--active': route.path === '/routes' }"
+          @click="router.push('/routes')">
+          <img src="~assets/icons/routing.svg" viewBox="0 0 24 24" class="icon" />
+          <!-- <span class="text">Rutas</span> -->
+        </div>
+        <div class="button__icon" :class="{ 'button__icon--active': route.path === '/about' }"
+          @click="router.push('/about')">
+          <img src="~assets/icons/menu.svg" viewBox="0 0 24 24" class="icon" />
+          <!-- <span class="text">Menu</span> -->
+        </div>
+      </div>
     </q-footer>
   </q-layout>
 </template>
@@ -254,9 +269,22 @@ const openFilters = () => {
   align-items: center;
   justify-content: space-between;
 
+  .logo {
+    cursor: pointer;
+    height: 50px;
+    width: auto;
+
+    &--mobile {
+      height: 40px;
+      width: auto;
+    }
+  }
+
 
   .app-title {
-    text-align: center;
+    text-align: left;
+    font-weight: 500;
+    font-size: 16px;
     width: 100%;
   }
 
@@ -301,19 +329,41 @@ const openFilters = () => {
   }
 }
 
-.button {
-  text-transform: capitalize;
-  font-size: 16px;
-  font-weight: 300;
+.footer {
+  background: $primary-gradient;
+  padding: 4px;
 
-  &__icon {
-    width: 24px;
-    height: 24px;
-  }
+  .button {
+    &__icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff20;
+      border-radius: 8px;
+      padding: 3px;
+      height: 50px;
+      width: 50px;
+      transition: background-color 0.3s;
 
-  &__text {
-    font-size: 12px;
-    letter-spacing: 1px;
+      &--active {
+        background-color: #00000040;
+      }
+
+
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .text {
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: capitalize;
+        font-weight: 100;
+      }
+    }
   }
 }
 </style>
