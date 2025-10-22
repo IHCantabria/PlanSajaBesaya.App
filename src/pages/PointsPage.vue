@@ -5,11 +5,11 @@ import { useLayoutsStore } from '../stores/layouts-store'
 
 const layoutsStore = useLayoutsStore()
 const router = useRouter()
-const onEventClick = (eventId) => {
-  router.push(`/events/${eventId}`)
+const onItemClick = (itemId) => {
+  router.push(`/points/${itemId}`)
 }
 
-const events = ref([
+const items = ref([
   {
     id: 1,
     title: 'Item Title',
@@ -102,23 +102,23 @@ const handleSwipe = () => {
 </script>
 
 <template>
-  <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-pa-md events-container"
-    :class="layoutsStore.isEventsListExpanded ? 'full-height' : ''">
-    <!-- add expand event on swipe top -->
-    <button @click="toggleList" class="my-button q-mb-sm mobile-only" aria-label="Expand/Collapse events list">
-      <q-icon :name="layoutsStore.isEventsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
+  <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-pa-md items-container"
+    :class="layoutsStore.isItemsListExpanded ? 'full-height' : ''">
+    <!-- add expand items on swipe top -->
+    <button @click="toggleList" class="my-button q-mb-sm mobile-only" aria-label="Expand/Collapse items list">
+      <q-icon :name="layoutsStore.isItemsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
     </button>
     <q-list style="width: 100%; max-width: 350px">
-      <q-item v-for="event in events" :key="event.id" clickable v-ripple @click="onEventClick(event.id)"
-        class="event-card q-pa-md q-mb-sm">
+      <q-item v-for="item in items" :key="item.id" clickable v-ripple @click="onItemClick(item.id)"
+        class="item-card q-pa-md q-mb-sm">
         <q-item-section>
           <q-item-label class="text-bold text-grey-9">
-            {{ event.title }}
+            {{ item.title }}
           </q-item-label>
-          <q-item-label caption>{{ event.time }}</q-item-label>
+          <q-item-label caption>{{ item.time }}</q-item-label>
         </q-item-section>
         <q-item-section side top>
-          <q-badge :color="event.color" :text-color="event.textColor" :label="event.type" class="q-px-sm q-py-xs" />
+          <q-badge :color="item.color" :text-color="item.textColor" :label="item.type" class="q-px-sm q-py-xs" />
         </q-item-section>
       </q-item>
     </q-list>
@@ -130,7 +130,7 @@ const handleSwipe = () => {
   overflow-y: auto;
 }
 
-.events-container {
+.items-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,7 +157,7 @@ const handleSwipe = () => {
   }
 }
 
-.event-card {
+.item-card {
   background-color: $grey-2;
   border-radius: 8px;
   width: 100%;

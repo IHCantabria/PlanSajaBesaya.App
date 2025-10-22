@@ -2,10 +2,6 @@
 import { useLayoutsStore } from 'src/stores/layouts-store';
 import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-const toggleButtons = ref('one');
-const toggleFilter = ref(true);
-
-const selected = ref('layer-1');
 
 const route = useRoute();
 const layoutsStore = useLayoutsStore();
@@ -19,38 +15,9 @@ const filters = ref(false);
 const filter1 = ref(false);
 const filter2 = ref(false);
 const filter3 = ref(false);
-// const openFilters = () => {
-//   filters.value = true;
-// }
 
 </script>
 <template>
-  <!-- HEADER -->
-  <div class="header-container q-gutter q-pa-xs">
-    <!-- Quick Filters: show only on events page -->
-    <div v-if="route.meta.title == 'Events'" class="mobile-only header flex row justify-center items-center">
-      <div class="toggle-button-container">
-        <q-btn-toggle v-model="toggleButtons" color="grey-2" text-color="white-6" toggle-color="blue-grey-1"
-          toggle-text-color="primary" spread class="my-custom-toggle" no-caps unelevated :options="[
-            { label: 'Tab-1', value: 'one' },
-            { label: 'Tab-2', value: 'two' }
-          ]" />
-      </div>
-      <div class="toggle-container">
-        <q-toggle v-model="toggleFilter" :label="toggleFilter ? 'Show only' : 'show all'"
-          class="q-mx-md toggle-label" />
-      </div>
-    </div>
-    <!-- show only on event detail page -->
-    <div v-else class="header flex row justify-center items-center">
-      <div class="simulation-layers">
-        <!-- <q-option-group :options="options" type="radio" v-model="selected" inline class="my-custom-radio" /> -->
-        <q-radio v-model="selected" val="layer-1" label="Layer 1" class="my-custom-radio" />
-        <q-radio v-model="selected" val="layer-2" label="Layer 2" class="my-custom-radio" />
-      </div>
-    </div>
-  </div>
-
   <!-- MAP -->
   <div class="map" :class="layoutsStore.isEventsListExpanded ? 'map--hidden' : ''">
     Map here
@@ -66,7 +33,7 @@ const filter3 = ref(false);
   <div class="desktop-only content content--full-height">
     <q-toolbar class="navbar">
       <!-- Back button: show only if not on home page -->
-      <q-btn v-if="route?.path !== '/events'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
+      <q-btn v-if="route?.path !== '/points'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
       <!-- Current page title -->
       <q-toolbar-title class="app-title">{{ route.meta.title ?? "" }}</q-toolbar-title>
       <!-- Filters button -->
@@ -112,62 +79,18 @@ const filter3 = ref(false);
         </q-menu>
       </q-btn>
     </q-toolbar>
-
-    <!-- Quick Filters -->
-    <div v-if="route.meta.title == 'Events'" class="header q-pa-md">
-      <div class="toggle-button-container full-width">
-        <q-btn-toggle v-model="toggleButtons" color="grey-2" text-color="white-6" toggle-color="blue-grey-1"
-          toggle-text-color="primary" spread class="my-custom-toggle" no-caps unelevated :options="[
-            { label: 'Show Only', value: 'one' },
-            { label: 'Show All', value: 'two' }
-          ]" />
-      </div>
-    </div>
     <router-view />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.header {
-  height: 50px;
-  width: 100%;
-  gap: 8px;
-  font-size: 1em;
-  font-weight: 400;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-}
+.navbar {
 
-.toggle-button-container,
-.toggle-container,
-.my-custom-radio {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: $blue-grey-9;
-  border-radius: 16px;
-  max-height: 40px;
-  overflow: hidden;
-}
-
-.toggle-label,
-.my-custom-toggle,
-.q-button {
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.simulation-layers {
-  display: flex;
-  gap: 8px;
-}
-
-.my-custom-radio {
-  display: flex;
-  padding: 0 16px;
-  justify-content: flex-start;
+  .app-title {
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: left;
+  }
 }
 
 .map {
