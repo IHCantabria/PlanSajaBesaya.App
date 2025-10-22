@@ -22,11 +22,11 @@
 
 _Development_
 
-    - Deploy QuasarTemplate.App - DEV
+    - Deploy PlanSajaBesaya.App - DEV
 
 ## App folder
 
-    QuasarTemplate.App
+    PlanSajaBesaya.App
 
 ## Distribution
 
@@ -48,19 +48,19 @@ _Development_
 
 ## Url GIT
 
-    - ssh  git@github.com:IHCantabria/QuasarTemplate.App.git
+    - ssh  git@github.com:IHCantabria/PlanSajaBesaya.App.git
 
 ## DNS
 
 _Development_
 
-    - quasardemodev.ihcantabria.com
+    - plansajabesayadev.ihcantabria.com
 
 ## URL APPLICATION
 
 _Development_
 
-    - quasardemodev.ihcantabria.com
+    - plansajabesayadev.ihcantabria.com
 
 ## COMPILATION SCRIPT PROFILES
 
