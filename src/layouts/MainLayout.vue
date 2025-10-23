@@ -38,10 +38,10 @@ const openFilters = () => {
           <q-btn flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
         </template>
         <!-- Current page title -->
-        <q-toolbar-title class="app-title text-grey-9 text-weight-bold">{{ route.meta.title ?? "" }}</q-toolbar-title>
+        <q-toolbar-title class="app-title">{{ route.meta.title ?? "" }}</q-toolbar-title>
         <!-- App Version -->
         <span v-if="route?.path === '/'" class="app-version text-grey-7 text-body2 text-weight-medium">v{{ $q.version
-          }}</span>
+        }}</span>
 
         <!-- Filters button -->
         <!-- Show only on points and routes pages -->
@@ -162,8 +162,8 @@ const openFilters = () => {
 
   .app-title {
     text-align: left;
-    font-size: 16px;
-    width: 100%;
+    font-weight: 600;
+    font-size: 1rem;
   }
 
   .filters-icon {
