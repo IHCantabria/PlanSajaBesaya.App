@@ -3,7 +3,11 @@ const routes = [
     path: '/',
     component: () => import('src/layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
+      {
+        path: '',
+        meta: { title: 'Plan Saja-Besaya' },
+        component: () => import('pages/HomePage.vue'),
+      },
       {
         path: 'points',
         component: () => import('src/layouts/MapLayout.vue'),
@@ -35,11 +39,6 @@ const routes = [
             meta: { title: 'Detalles de la ruta' },
           },
         ],
-      },
-      {
-        path: 'about',
-        meta: { title: 'Sobre nosotros' },
-        component: () => import('pages/AboutUsPage.vue'),
       },
     ],
   },
