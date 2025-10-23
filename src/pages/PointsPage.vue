@@ -12,83 +12,87 @@ const onItemClick = (itemId) => {
 const items = ref([
   {
     id: 1,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre del punto',
+    type: 'Árbol',
+    color: 'light-green-2',
+    textColor: 'light-green'
   },
   {
     id: 2,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre del punto',
+    type: 'Natural',
+    color: 'blue-2',
+    textColor: 'blue'
   },
   {
     id: 3,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'grey-4',
-    textColor: 'grey'
+    title: 'Nombre del punto',
+    type: 'Cultural',
+    color: 'deep-purple-2',
+    textColor: 'deep-purple'
   },
   {
     id: 4,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre del punto',
+    type: 'Industrial',
+    color: 'orange-2',
+    textColor: 'orange'
   },
   {
     id: 5,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'grey-4',
-    textColor: 'grey'
+    title: 'Nombre del punto',
+    type: 'Árbol',
+    color: 'light-green-2',
+    textColor: 'light-green'
   },
   {
     id: 6,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre del punto',
+    type: 'Natural',
+    color: 'blue-2',
+    textColor: 'blue'
   },
   {
     id: 7,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'grey-4',
-    textColor: 'grey'
+    title: 'Nombre del punto',
+    type: 'Cultural',
+    color: 'deep-purple-2',
+    textColor: 'deep-purple'
   },
   {
     id: 8,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre del punto',
+    type: 'Industrial',
+    color: 'orange-2',
+    textColor: 'orange'
   },
   {
     id: 9,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'grey-4',
-    textColor: 'grey'
+    title: 'Nombre del punto',
+    type: 'Árbol',
+    color: 'light-green-2',
+    textColor: 'light-green'
   },
   {
     id: 10,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre del punto',
+    type: 'Natural',
+    color: 'blue-2',
+    textColor: 'blue'
+  },
+  {
+    id: 11,
+    title: 'Nombre del punto',
+    type: 'Cultural',
+    color: 'deep-purple-2',
+    textColor: 'deep-purple'
+  },
+  {
+    id: 12,
+    title: 'Nombre del punto',
+    type: 'Industrial',
+    color: 'orange-2',
+    textColor: 'orange'
   }
 ])
 
@@ -104,7 +108,6 @@ const handleSwipe = () => {
 <template>
   <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-pa-md items-container"
     :class="layoutsStore.isItemsListExpanded ? 'full-height' : ''">
-    <!-- add expand items on swipe top -->
     <button @click="toggleList" class="my-button q-mb-sm mobile-only" aria-label="Expand/Collapse items list">
       <q-icon :name="layoutsStore.isItemsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
     </button>
@@ -112,10 +115,10 @@ const handleSwipe = () => {
       <q-item v-for="item in items" :key="item.id" clickable v-ripple @click="onItemClick(item.id)"
         class="item-card q-pa-md q-mb-sm">
         <q-item-section>
-          <q-item-label class="text-bold text-grey-9">
+          <q-item-label caption class="item-card item-card__id">ID {{ item.id }}</q-item-label>
+          <q-item-label class="item-card item-card__title text-grey-9">
             {{ item.title }}
           </q-item-label>
-          <q-item-label caption>{{ item.time }}</q-item-label>
         </q-item-section>
         <q-item-section side top>
           <q-badge :color="item.color" :text-color="item.textColor" :label="item.type" class="q-px-sm q-py-xs" />
@@ -135,31 +138,41 @@ const handleSwipe = () => {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-}
 
-.my-button {
-  border: none;
-  border-radius: 100%;
-  background: none;
-  height: 20px;
-  width: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: $blue-grey-4;
+  .my-button {
+    border: none;
+    border-radius: 100%;
+    background: none;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: $blue-grey-4;
 
-  &:hover {
-    color: $blue-grey-6;
-    background-color: $blue-grey-2;
-    transform: scale(1.05);
-    transition: transform 0.2s;
+    &:hover {
+      color: $blue-grey-6;
+      background-color: $blue-grey-2;
+      transform: scale(1.05);
+      transition: transform 0.2s;
+    }
   }
-}
 
-.item-card {
-  background-color: $grey-2;
-  border-radius: 8px;
-  width: 100%;
+  .item-card {
+    background-color: $grey-2;
+    border-radius: 8px;
+    width: 100%;
+
+    &__id {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    &__title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
 }
 </style>
