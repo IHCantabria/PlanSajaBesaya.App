@@ -78,3 +78,17 @@ body {
 .my-font {
   font-family: 'customfont', sans-serif;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+    color: $accent;
+  }
+}
+
+.no-underline {
+  text-decoration: none;
+}
