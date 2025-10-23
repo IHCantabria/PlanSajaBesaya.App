@@ -97,21 +97,23 @@ const items = ref([
 ])
 
 const toggleList = () => {
-  layoutsStore.toggleEventsList()
+  layoutsStore.toggleItemsList()
 }
 
 const handleSwipe = () => {
-  layoutsStore.toggleEventsList()
+  layoutsStore.toggleItemsList()
 }
 </script>
 
 <template>
-  <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-pa-md items-container"
+  <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-px-md items-container"
     :class="layoutsStore.isItemsListExpanded ? 'full-height' : ''">
-    <button @click="toggleList" class="my-button q-mb-sm mobile-only" aria-label="Expand/Collapse items list">
-      <q-icon :name="layoutsStore.isItemsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
-    </button>
-    <q-list style="width: 100%; max-width: 350px">
+    <div class="swipe-button-container">
+      <button @click="toggleList" class="swipe-button q-mb-sm mobile-only" aria-label="Expand/Collapse items list">
+        <q-icon :name="layoutsStore.isItemsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
+      </button>
+    </div>
+    <q-list style="width: 100%; max-width: 360px">
       <q-item v-for="item in items" :key="item.id" clickable v-ripple @click="onItemClick(item.id)"
         class="item-card q-pa-md q-mb-sm">
         <q-item-section>
@@ -139,7 +141,17 @@ const handleSwipe = () => {
   align-items: center;
   justify-content: flex-start;
 
-  .my-button {
+  .swipe-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .swipe-button {
     border: none;
     border-radius: 100%;
     background: none;

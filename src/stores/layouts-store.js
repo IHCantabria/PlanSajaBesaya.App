@@ -6,11 +6,11 @@ export const useLayoutsStore = defineStore('layouts', {
   }),
 
   getters: {
-    isEventsListExpanded: (state) => state.eventsListExpanded,
+    isItemsListExpanded: (state) => state.eventsListExpanded,
   },
 
   actions: {
-    toggleEventsList() {
+    toggleItemsList() {
       this.eventsListExpanded = !this.eventsListExpanded
     },
   },
