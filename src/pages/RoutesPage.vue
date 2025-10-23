@@ -12,84 +12,65 @@ const onItemClick = (itemId) => {
 const items = ref([
   {
     id: 1,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   },
   {
     id: 2,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   },
   {
     id: 3,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'grey-4',
-    textColor: 'grey'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   },
   {
     id: 4,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   },
   {
     id: 5,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'grey-4',
-    textColor: 'grey'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   },
   {
     id: 6,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   },
   {
     id: 7,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'grey-4',
-    textColor: 'grey'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   },
   {
     id: 8,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   },
   {
     id: 9,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'grey-4',
-    textColor: 'grey'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   },
   {
     id: 10,
-    title: 'Item Title',
-    time: 'Item description',
-    type: 'Status',
-    color: 'red-2',
-    textColor: 'red'
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
+  },
+  {
+    id: 11,
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
+  },
+  {
+    id: 12,
+    title: 'Nombre de la ruta',
+    location: ' Municipio'
   }
+
 ])
 
 const toggleList = () => {
@@ -112,13 +93,15 @@ const handleSwipe = () => {
       <q-item v-for="item in items" :key="item.id" clickable v-ripple @click="onItemClick(item.id)"
         class="item-card q-pa-md q-mb-sm">
         <q-item-section>
-          <q-item-label class="text-bold text-grey-9">
+          <!-- add icon here -->
+
+          <q-item-label caption class="item-card item-card__id"><span class="icon material-symbols-rounded"
+              style="vertical-align: middle;">
+              location_on
+            </span> {{ item.location }}</q-item-label>
+          <q-item-label class="item-card item-card__title text-grey-9">
             {{ item.title }}
           </q-item-label>
-          <q-item-label caption>{{ item.time }}</q-item-label>
-        </q-item-section>
-        <q-item-section side top>
-          <q-badge :color="item.color" :text-color="item.textColor" :label="item.type" class="q-px-sm q-py-xs" />
         </q-item-section>
       </q-item>
     </q-list>
@@ -135,31 +118,45 @@ const handleSwipe = () => {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-}
 
-.my-button {
-  border: none;
-  border-radius: 100%;
-  background: none;
-  height: 20px;
-  width: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: $blue-grey-4;
+  .my-button {
+    border: none;
+    border-radius: 100%;
+    background: none;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: $blue-grey-4;
 
-  &:hover {
-    color: $blue-grey-6;
-    background-color: $blue-grey-2;
-    transform: scale(1.05);
-    transition: transform 0.2s;
+    &:hover {
+      color: $blue-grey-6;
+      background-color: $blue-grey-2;
+      transform: scale(1.05);
+      transition: transform 0.2s;
+    }
   }
-}
 
-.item-card {
-  background-color: $grey-2;
-  border-radius: 8px;
-  width: 100%;
+  .item-card {
+    background-color: $grey-2;
+    border-radius: 8px;
+    width: 100%;
+
+    &__id {
+      font-weight: 500;
+      font-size: 0.9rem;
+
+      .icon {
+        font-size: 16px
+      }
+    }
+
+    &__title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
 }
 </style>

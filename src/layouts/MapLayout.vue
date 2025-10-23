@@ -33,7 +33,7 @@ const filter3 = ref(false);
   <div class="desktop-only content content--full-height">
     <q-toolbar class="navbar">
       <!-- Back button: show only if not on home page -->
-      <q-btn v-if="route?.path !== '/points'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
+      <q-btn v-if="route?.path !== '/'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
       <!-- Current page title -->
       <q-toolbar-title class="app-title">{{ route.meta.title ?? "" }}</q-toolbar-title>
       <!-- Filters button -->
