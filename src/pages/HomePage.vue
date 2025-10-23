@@ -267,9 +267,6 @@ const source = ref([
       flex-direction: row;
       align-items: flex-end;
       margin: 0 auto;
-      padding: 8px 0;
-      position: absolute;
-      bottom: 0;
       padding: 8px 10%;
       background-color: $grey-1;
     }
