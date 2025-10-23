@@ -19,18 +19,18 @@ const filter3 = ref(false);
 </script>
 <template>
   <!-- MAP -->
-  <div class="map" :class="layoutsStore.isEventsListExpanded ? 'map--hidden' : ''">
+  <div class="map" :class="layoutsStore.isItemsListExpanded ? 'map--hidden' : ''">
     Map here
   </div>
 
   <!-- CONTENT -->
   <!-- MOBILE ONLY -->
-  <div class="mobile-only content" :class="layoutsStore.isEventsListExpanded ? 'content--full-height' : ''">
+  <div class="mobile-only content" :class="layoutsStore.isItemsListExpanded ? 'content--full-height' : ''">
     <router-view />
   </div>
 
   <!-- DESKTOP ONLY -->
-  <div class="desktop-only content content--full-height">
+  <div class="desktop-only content content--desktop">
     <q-toolbar class="navbar">
       <!-- Back button: show only if not on home page -->
       <q-btn v-if="route?.path !== '/'" flat dense round icon="arrow_back" aria-label="Back" @click="goBack" />
@@ -80,19 +80,30 @@ const filter3 = ref(false);
       </q-btn>
     </q-toolbar>
     <router-view />
+    <!-- Footer -->
+    <footer reveal class="footer desktop-only">
+      <!-- Logos & project references -->
+      <div class="logos row">
+        <div class="col-auto q-mr-sm">
+          <img src="~assets/logos-ih.png" alt="Gobierno de Cantabria" height="45" />
+        </div>
+        <div class="col-auto">
+          <img src="~assets/gob_cantabria_logo.png" alt="Fundación Santander Creativa" height="45" />
+        </div>
+      </div>
+      <span class="reference text-body2 text-grey-7">
+        Trabajos co-financiados por la Dirección General de Medio Ambiente y Cambio Climático del Gobierno de
+        Cantabria
+      </span>
+      <!-- CopyRight -->
+      <span class="copyright text-grey-9">
+        © 2025 <a href="https://ihcantabria.com" class="text-weight-bold no-underline">IHCantabria.</a>
+      </span>
+    </footer>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.navbar {
-
-  .app-title {
-    font-weight: bold;
-    font-size: 1rem;
-    text-align: left;
-  }
-}
-
 .map {
   position: absolute;
   top: 50px;
@@ -120,10 +131,55 @@ const filter3 = ref(false);
   transition: height 0.3s ease-in-out;
 
   &--full-height {
-    bottom: 0;
     border-radius: 0;
-    height: calc(100% - 70px);
-    width: 350px;
+    height: calc(100vh - 50px - 60px); // subtract header and footer heights
+    width: 100%;
+  }
+
+  &--desktop {
+    height: calc(100vh - 70px);
+    max-width: 360px;
+    border-radius: 0;
+    position: static;
+    border-bottom: 0;
+  }
+
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: white;
+
+    .app-title {
+      text-align: left;
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+
+  .footer {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 12px 20px;
+    border-top: 1px solid $grey-3;
+    background-color: white;
+
+    .reference,
+    .copyright {
+      font-size: 0.85rem;
+
+    }
+
+    .copyright {
+      margin-top: 8px;
+
+    }
   }
 }
 </style>
