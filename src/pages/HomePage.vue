@@ -112,7 +112,7 @@ const source = ref([
     }
 
     &--desktop {
-      padding: 2rem 0;
+      padding: 1.5rem 0;
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-end;
