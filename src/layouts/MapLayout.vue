@@ -121,13 +121,13 @@ const filter3 = ref(false);
 
 .content {
   position: absolute;
-  bottom: 50px;
+  bottom: 60px;
   left: 0;
   right: 0;
   overflow: auto;
   border-radius: 16px 16px 0 0;
   background-color: white;
-  height: 40vh;
+  height: 50vh;
   transition: height 0.3s ease-in-out;
 
   &--full-height {
@@ -137,11 +137,13 @@ const filter3 = ref(false);
   }
 
   &--desktop {
-    height: calc(100vh - 70px);
+    height: calc(100vh - 71px);
     max-width: 360px;
     border-radius: 0;
     position: static;
     border-bottom: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .navbar {
@@ -158,8 +160,6 @@ const filter3 = ref(false);
   }
 
   .footer {
-    position: sticky;
-    bottom: 0;
     width: 100%;
     height: fit-content;
     display: flex;

@@ -108,7 +108,7 @@ const handleSwipe = () => {
 <template>
   <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-px-md items-container"
     :class="layoutsStore.isItemsListExpanded ? 'full-height' : ''">
-    <div class="swipe-button-container">
+    <div class="swipe-button-container mobile-only">
       <button @click="toggleList" class="swipe-button q-mb-sm mobile-only" aria-label="Expand/Collapse items list">
         <q-icon :name="layoutsStore.isItemsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
       </button>
@@ -136,10 +136,8 @@ const handleSwipe = () => {
 }
 
 .items-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  height: 100%;
+  overflow: auto;
 
   .swipe-button-container {
     display: flex;

@@ -85,8 +85,7 @@ const handleSwipe = () => {
 <template>
   <div v-touch-swipe.mouse.up.down="handleSwipe" class="q-px-md items-container"
     :class="layoutsStore.isItemsListExpanded ? 'full-height' : ''">
-    <!-- add expand items on swipe top -->
-    <div class="swipe-button-container">
+    <div class="swipe-button-container mobile-only">
       <button @click="toggleList" class="swipe-button q-mb-sm mobile-only" aria-label="Expand/Collapse items list">
         <q-icon :name="layoutsStore.isItemsListExpanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'" />
       </button>
@@ -95,8 +94,6 @@ const handleSwipe = () => {
       <q-item v-for="item in items" :key="item.id" clickable v-ripple @click="onItemClick(item.id)"
         class="item-card q-pa-md q-mb-sm">
         <q-item-section>
-          <!-- add icon here -->
-
           <q-item-label caption class="item-card item-card__id"><span class="icon material-symbols-rounded"
               style="vertical-align: middle;">
               location_on
@@ -116,10 +113,8 @@ const handleSwipe = () => {
 }
 
 .items-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  height: 100%;
+  overflow: auto;
 
   .swipe-button-container {
     display: flex;
